@@ -1,6 +1,6 @@
-package com.sep490_backend.authentication.repository;
+package com.sep490_backend.authentication.repository.tenant;
 
-import com.sep490_backend.authentication.entity.User;
+import com.sep490_backend.authentication.entity.tenant.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

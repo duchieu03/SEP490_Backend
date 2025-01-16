@@ -1,9 +1,12 @@
-package com.sep490_backend.authentication.entity;
+package com.sep490_backend.authentication.entity.tenant;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Set;
 
 @Getter
 @Setter
@@ -12,9 +15,12 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-public class Permission {
+public class Role {
     @Id
-    String name;
+    private String name;
 
-    String description;
+    private String description;
+
+    @ManyToMany
+    private Set<Permission> permissions;
 }
