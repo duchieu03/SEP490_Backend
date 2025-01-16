@@ -1,4 +1,4 @@
-package com.sep490_backend.authentication.entity;
+package com.sep490_backend.authentication.entity.tenant;
 
 import jakarta.persistence.*;
 import lombok.*;
