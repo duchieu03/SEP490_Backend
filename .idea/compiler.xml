@@ -7,11 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="migration" />
         <module name="gateway" />
         <module name="another" />
         <module name="authentication" />
       </profile>
-      <profile name="Annotation profile for discovery" enabled="true">
+      <profile name="Annotation profile for migration" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -28,6 +29,7 @@
       <module name="authentication" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="migration" options="-parameters" />
     </option>
   </component>
 </project>

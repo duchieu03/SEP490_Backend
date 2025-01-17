@@ -1,0 +1,38 @@
+server:
+  port: ${SERVER-PORT:8085}
+
+spring:
+  application:
+    name: migration
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring_common
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+multi-tenancy:
+  master:
+    liquibase:
+      enabled: true
+      drop-first: false #never set true on production
+      change-log: classpath:db/changelog/db.changelog-master.yaml
+  tenant: #specfic config for each tenant datasource
+    liquibase:
+      enabled: true
+      drop-first: false #never set true on production
+      changeLog: classpath:db/changelog/db.changelog-tenant.yaml
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
