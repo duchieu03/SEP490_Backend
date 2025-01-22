@@ -6,8 +6,10 @@ server:
   port: 8761
 
 eureka:
+  instance:
+    hostname: ${SERVER_HOSTNAME:localhost}
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://localhost:${server.port}/eureka/
+      defaultZone: ${DISCOVERY_SERVICE_URL:http://localhost:${server.port}/eureka/}

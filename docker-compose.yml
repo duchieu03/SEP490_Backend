@@ -1,0 +1,99 @@
+services:
+  mysql-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql_data
+    networks:
+      - app-network
+
+  discovery-service:
+    image: hieundhe170151/discovery-service
+    environment:
+      SERVER_HOSTNAME: discovery-service
+      SERVER_PORT: 8761
+      DISCOVERY_SERVICE_URL: http://discovery-service:8761/eureka/
+    ports:
+      - "8761:8761"
+    networks:
+      - app-network
+
+  authentication-service:
+    image: hieundhe170151/authentication-service
+    environment:
+      DISCOVERY_SERVICE_URL: http://discovery-service:8761/eureka/
+      MYSQL_URL: mysql-db:3306/spring_common
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: 123456
+      SERVER_PORT: 8081
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql-db
+      - discovery-service
+    build:
+      context: ./authentication
+      dockerfile: "Dockerfile"
+    networks:
+      - app-network
+
+  another-service:
+    image: hieundhe170151/another-service
+    environment:
+      DISCOVERY_SERVICE_URL: http://discovery-service:8761/eureka/
+      MYSQL_URL: mysql-db:3306/spring_common
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: 123456
+      SERVER_PORT: 8082
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mysql-db
+      - discovery-service
+    build:
+      context: ./another
+      dockerfile: "Dockerfile"
+    networks:
+      - app-network
+
+  migration-service:
+    image: hieundhe170151/migration-service
+    environment:
+      DISCOVERY_SERVICE_URL: http://discovery-service:8761/eureka/
+      MYSQL_URL: mysql-db:3306/spring_common
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: 123456
+      SERVER_PORT: 8085
+    ports:
+      - "8085:8085"
+    depends_on:
+      - mysql-db
+      - discovery-service
+    build:
+      context: ./migration
+      dockerfile: "Dockerfile"
+    networks:
+      - app-network
+
+  gateway-service:
+    image: hieundhe170151/gateway-service
+    environment:
+      DISCOVERY_SERVICE_URL: http://discovery-service:8761/eureka/
+      FRONTEND_GATEWAY: http://localhost:3000
+      SERVER_PORT: 8762
+    ports:
+      - "8762:8762"
+    depends_on:
+      - discovery-service
+    networks:
+      - app-network
+
+volumes:
+  db:
+
+networks:
+  app-network:
+    driver: bridge
