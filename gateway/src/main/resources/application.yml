@@ -3,6 +3,15 @@ spring:
     name: gateway
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: ${FRONTEND_GATEWAY}
+            allowedHeaders: "*"
+            allowedMethods: "*"
+            allowCredentials: true
       routes:
         - id: authentication-service
           uri: lb://authentication-service
@@ -14,7 +23,7 @@ spring:
             - Path=/another/**
 
 server:
-  port: 8083
+  port: ${SERVER_PORT:8762}
 
 eureka:
   instance:
@@ -23,6 +32,6 @@ eureka:
     ip-address: 127.0.0.1
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone:  ${DISCOVERY_SERVICE_URL:http://localhost:8761/eureka/}
     fetch-registry: true
     register-with-eureka: true

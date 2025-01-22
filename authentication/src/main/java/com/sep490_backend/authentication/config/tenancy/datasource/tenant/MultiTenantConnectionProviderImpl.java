@@ -24,6 +24,8 @@ public class MultiTenantConnectionProviderImpl extends AbstractDataSourceBasedMu
 
     private final TenantRepository tenantRepository;
 
+    private final TenantDatasourceProperties tenantDatasourceProperties;
+
     private LoadingCache<String, DataSource> TENANT_DATASOURCES;
 
     @PostConstruct
@@ -53,8 +55,8 @@ public class MultiTenantConnectionProviderImpl extends AbstractDataSourceBasedMu
         config.setJdbcUrl(tenant.getUrl());
         config.setUsername(tenant.getName());
         config.setPassword(tenant.getPassword());
-        config.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        config.setMaximumPoolSize(10);
+        config.setDriverClassName(tenantDatasourceProperties.getDriverClassName());
+        config.setMaximumPoolSize(tenantDatasourceProperties.getMaximumPoolSize());
         try{
             DataSource dataSource = new HikariDataSource(config);
             return dataSource;
