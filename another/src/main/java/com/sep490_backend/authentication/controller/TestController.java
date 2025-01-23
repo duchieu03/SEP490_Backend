@@ -1,5 +1,6 @@
 package com.sep490_backend.authentication.controller;
 
+import com.sep490_backend.authentication.repository.TenantRepository;
 import com.sep490_backend.authentication.service.AnotherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,10 @@ public class TestController {
     @Autowired
     private AnotherService jwtService;
 
+    private final TenantRepository tenantRepository;
+
     @GetMapping
     public String helloWorld(){
-        return jwtService.testAnotherService();
+        return tenantRepository.findAll().toString();
     }
 }
