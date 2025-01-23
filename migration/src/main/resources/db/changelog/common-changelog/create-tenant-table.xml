@@ -6,22 +6,22 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="init_tenant_table" author="hieu.nguyen">
-        <sql>
-            create table tenant
-            (
-                id                int primary key    not null auto_increment,
-                name         varchar(50)  not null,
-                url          varchar(255)       not null,
-                password          varchar(255)       not null,
-                is_deleted        bool,
-                created_at        timestamp,
-                created_by        varchar(255),
-                updated_at        timestamp,
-                updated_by        varchar(255)
-            );
-        </sql>
-    </changeSet>
+<!--    <changeSet id="init_tenant_table" author="hieu.nguyen">-->
+<!--        <sql>-->
+<!--            create table tenant-->
+<!--            (-->
+<!--                id                int primary key    not null auto_increment,-->
+<!--                name         varchar(50)  not null,-->
+<!--                url          varchar(255)       not null,-->
+<!--                password          varchar(255)       not null,-->
+<!--                is_deleted        bool,-->
+<!--                created_at        timestamp,-->
+<!--                created_by        varchar(255),-->
+<!--                updated_at        timestamp,-->
+<!--                updated_by        varchar(255)-->
+<!--            );-->
+<!--        </sql>-->
+<!--    </changeSet>-->
 
 <!--    <changeSet id="insert_sample_tenant_table" author="hieu.nguyen">-->
 <!--        <sql>-->
