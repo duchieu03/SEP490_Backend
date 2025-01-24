@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: anotherservice2
+
+# eureka se lay cai name nay de config ben yml cua uri: lb://anotherservice2
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+server:
+  port: 8123
