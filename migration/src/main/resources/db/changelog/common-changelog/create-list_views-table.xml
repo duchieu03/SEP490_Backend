@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="init_list_views_table" author="tuananh.nguyen">
+        <sql>
+            CREATE TABLE list_views
+            (
+                id         BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                uuid       VARCHAR(36)        NOT NULL,
+                user_id    BIGINT,
+                tab        VARCHAR(256),
+                name       VARCHAR(256),
+                updated_by VARCHAR(256),
+                created_by BIGINT,
+                updated_at TIMESTAMP,
+                created_at TIMESTAMP,
+                status     VARCHAR(256),
+                is_deleted TINYINT
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

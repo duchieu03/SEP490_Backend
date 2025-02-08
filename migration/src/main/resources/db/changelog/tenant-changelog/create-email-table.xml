@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="init_email_table" author="tuananh.nguyen">
+        <sql>
+            CREATE TABLE email
+            (
+                id         BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                uuid       VARCHAR(36)        NOT NULL,
+                `sender`       VARCHAR(256),
+                `receiver`   VARCHAR(256),
+                bcc        VARCHAR(256),
+                subject    VARCHAR(256),
+                content    VARCHAR(256),
+                status     VARCHAR(256),
+                updated_by VARCHAR(256),
+                created_by BIGINT,
+                updated_at TIMESTAMP,
+                created_at TIMESTAMP,
+                is_deleted TINYINT
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

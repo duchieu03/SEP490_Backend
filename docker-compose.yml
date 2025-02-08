@@ -68,7 +68,7 @@ services:
       DISCOVERY_SERVICE_URL: http://discovery-service:8761/eureka/
       MYSQL_URL: mysql-db:3306/spring_common
       MYSQL_USERNAME: root
-      MYSQL_PASSWORD: 123456
+      MYSQL_PASSWORD: root
       SERVER_PORT: 8085
     ports:
       - "8085:8085"

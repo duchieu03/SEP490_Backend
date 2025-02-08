@@ -8,8 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="migration" />
+        <module name="operation" />
         <module name="gateway" />
-        <module name="another" />
         <module name="authentication" />
       </profile>
       <profile name="Annotation profile for discovery" enabled="true">
@@ -23,6 +23,9 @@
         <module name="discovery" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="another" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -31,6 +34,7 @@
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="migration" options="-parameters" />
+      <module name="operation" options="-parameters" />
     </option>
   </component>
 </project>

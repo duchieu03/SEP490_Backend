@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="init_opportunities_table" author="tuananh.nguyen">
+        <sql>
+            CREATE TABLE opportunities
+            (
+                id                BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+                uuid              VARCHAR(36)        NOT NULL,
+                account_id        BIGINT,
+                probability       FLOAT,
+                name              VARCHAR(256),
+                amount            BIGINT,
+                type              VARCHAR(256),
+                primary_campaign  VARCHAR(256),
+                description       VARCHAR(256),
+                opportunity_owner VARCHAR(36),
+                created_by        BIGINT,
+                updated_by        VARCHAR(256),
+                updated_at        TIMESTAMP,
+                created_at        TIMESTAMP,
+                stage             VARCHAR(256),
+                is_deleted        TINYINT
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>
